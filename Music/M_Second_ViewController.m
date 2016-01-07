@@ -63,7 +63,7 @@
     
     searchBar.delegate = self;
     
-    search.frame = CGRectMake(0, 66, screenWidth, 35);
+//    search.frame = CGRectMake(0, 66, screenWidth, 35);
     
     tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
     
@@ -82,19 +82,19 @@
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    [dataList removeAllObjects];
-    
-    if(string.length != 0)
-        [dataList addObjectsFromArray:[System getFormat:@"key contains[cd] %@" argument:@[string]]];
-    else
-        [dataList addObjectsFromArray:[System getAll]];
-    
-    [tableView reloadData];
-    
-    return YES;
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    [dataList removeAllObjects];
+//    
+//    if(string.length != 0)
+//        [dataList addObjectsFromArray:[System getFormat:@"key contains[cd] %@" argument:@[string]]];
+//    else
+//        [dataList addObjectsFromArray:[System getAll]];
+//    
+//    [tableView reloadData];
+//    
+//    return YES;
+//}
 
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -111,6 +111,8 @@
 
 - (void)didPressSearch
 {
+    if(dataList.count == 0) return;
+    
     isSearch =! isSearch;
     [tableView reloadDataWithAnimation:YES];
     if(isSearch)
