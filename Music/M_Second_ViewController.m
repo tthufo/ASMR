@@ -10,7 +10,9 @@
 
 #import "YoutubeChildViewController.h"
 
-@interface M_Second_ViewController () <UISearchBarDelegate>
+@import GoogleMobileAds;
+
+@interface M_Second_ViewController () <UISearchBarDelegate,GADInterstitialDelegate,PlayerDelegate>
 {
     IBOutlet UITableView * tableView;
     NSMutableArray * dataList;
@@ -20,11 +22,59 @@
     float height;
 }
 
+@property(nonatomic, strong) GADInterstitial *interstitial;
+
 @end
 
 @implementation M_Second_ViewController
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)createAndLoadInterstitial
+{
+    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:adAPI];
+    
+    self.interstitial.delegate = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+//    request.testDevices = @[
+//                            kGADSimulatorID,@"a104de0d0aca5165d505f82e691ba8cd"
+//                            ];
+    
+    [self.interstitial loadRequest:request];
+}
+
+#pragma mark GADInterstitialDelegate implementation
+
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    [self createAndLoadInterstitial];
+}
+
+- (void)playerDidFinish:(NSDictionary*)dict
+{
+    if(![self getValue:@"fav"])
+    {
+        [self addValue:@"1" andKey:@"fav"];
+    }
+    else
+    {
+        int count = [[self getValue:@"fav"] intValue] + 1 ;
+        
+        [self addValue:[NSString stringWithFormat:@"%i", count] andKey:@"fav"];
+    }
+    
+    if([[self getValue:@"fav"] intValue] % 6 == 0 && self.interstitial.isReady)
+    {
+        [self.interstitial presentFromRootViewController:self];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self registerForKeyboardNotifications:NO andSelector:@[@"keyboardWasShown:",@"keyboardWillBeHidden:"]];
@@ -52,6 +102,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[AVHexColor colorWithHexString:@"#136CFA"]}];
+    
+    [self createAndLoadInterstitial];
     
     dataList = [NSMutableArray new];
     
@@ -215,7 +267,7 @@
     
     [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR videos",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
         
-        NSLog(@"%i",errorCode);
+//        NSLog(@"%i",errorCode);
         
     }];
 }
@@ -246,6 +298,8 @@
     NSDictionary * dict = [System getValue:((System*)dataList[indexPath.row]).key];
     
     YoutubeChildViewController *videoPlayerViewController = [[YoutubeChildViewController alloc] initWithVideoIdentifier:dict[@"snippet"][@"resourceId"][@"videoId"]];
+    
+    videoPlayerViewController.delegate = self;
     
     [self presentViewController:videoPlayerViewController animated:YES completion:^{
         if(isSearch)

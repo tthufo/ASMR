@@ -57,6 +57,7 @@
 {
     [super viewWillAppear:animated];
 //    [self hideSVHUD];
+    [self.delegate playerDidFinish:@{}];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 }
 
@@ -83,7 +84,7 @@
     if (self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying)
     {
 //        [self didStartTimer:YES];
-        [self hideSVHUD];
+//        [self hideSVHUD];
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStateStopped)
     {
@@ -91,11 +92,11 @@
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStatePaused)
     {
-        [self hideSVHUD];
+//        [self hideSVHUD];
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStateInterrupted)
     {
-        [self hideSVHUD];
+//        [self hideSVHUD];
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStateSeekingForward)
     {

@@ -10,17 +10,68 @@
 
 #import "YoutubeChildViewController.h"
 
-@interface M_Detail_ViewController ()
+@import GoogleMobileAds;
+
+@interface M_Detail_ViewController () <GADInterstitialDelegate, PlayerDelegate>
 {
     IBOutlet UITableView * tableView;
+    
     NSMutableArray * dataList;
 }
+
+@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
 @implementation M_Detail_ViewController
 
 @synthesize playListId, titleName;
+
+- (void)createAndLoadInterstitial
+{
+    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:adAPI];
+    
+    self.interstitial.delegate = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+//    request.testDevices = @[
+//                            kGADSimulatorID,@"a104de0d0aca5165d505f82e691ba8cd"
+//                            ];
+    
+    [self.interstitial loadRequest:request];
+}
+
+#pragma mark GADInterstitialDelegate implementation
+
+- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+{
+
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+{
+    [self createAndLoadInterstitial];
+}
+
+- (void)playerDidFinish:(NSDictionary*)dict
+{
+    if(![self getValue:@"detail"])
+    {
+        [self addValue:@"1" andKey:@"detail"];
+    }
+    else
+    {
+        int count = [[self getValue:@"detail"] intValue] + 1 ;
+        
+        [self addValue:[NSString stringWithFormat:@"%i", count] andKey:@"detail"];
+    }
+    
+    if([[self getValue:@"detail"] intValue] % 6 == 0 && self.interstitial.isReady)
+    {
+        [self.interstitial presentFromRootViewController:self];
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -36,6 +87,8 @@
     self.title = titleName;
     
     dataList = [NSMutableArray new];
+    
+    [self createAndLoadInterstitial];
     
     [self didRequestData];
 }
@@ -150,7 +203,7 @@
     
     [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR videos",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
         
-        NSLog(@"%i",errorCode);
+//        NSLog(@"%i",errorCode);
         
     }];
 }
@@ -180,6 +233,8 @@
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     YoutubeChildViewController *videoPlayerViewController = [[YoutubeChildViewController alloc] initWithVideoIdentifier:dataList[indexPath.row][@"snippet"][@"resourceId"][@"videoId"]];
+    
+    videoPlayerViewController.delegate = self;
     
     [self presentViewController:videoPlayerViewController animated:YES completion:nil];
 }

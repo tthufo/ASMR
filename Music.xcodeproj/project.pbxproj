@@ -376,8 +376,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -399,7 +399,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9749dde5-f125-46ca-b60a-d189d489f9c2";
+				PROVISIONING_PROFILE = "48f7e730-83dc-4489-84fa-df043ec6f559";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -421,8 +421,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -437,7 +437,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "9749dde5-f125-46ca-b60a-d189d489f9c2";
+				PROVISIONING_PROFILE = "48f7e730-83dc-4489-84fa-df043ec6f559";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -448,14 +448,15 @@
 			baseConfigurationReference = FBBC8EE236303A5CF52CE579 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Music/PrefixHeader.pch;
 				INFOPLIST_FILE = Music/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.vmgmedia.asmr;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.vmgmedia.ASMRTube;
 				PRODUCT_NAME = ASMRTube;
-				PROVISIONING_PROFILE = "9749dde5-f125-46ca-b60a-d189d489f9c2";
+				PROVISIONING_PROFILE = "48f7e730-83dc-4489-84fa-df043ec6f559";
 			};
 			name = Debug;
 		};
@@ -464,14 +465,15 @@
 			baseConfigurationReference = 762394CF9E0B6563C7558399 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: VMG MEDIA JOINT STOCK COMPANY";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Music/PrefixHeader.pch;
 				INFOPLIST_FILE = Music/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.vmgmedia.asmr;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.vmgmedia.ASMRTube;
 				PRODUCT_NAME = ASMRTube;
-				PROVISIONING_PROFILE = "9749dde5-f125-46ca-b60a-d189d489f9c2";
+				PROVISIONING_PROFILE = "48f7e730-83dc-4489-84fa-df043ec6f559";
 			};
 			name = Release;
 		};

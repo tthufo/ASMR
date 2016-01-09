@@ -8,6 +8,14 @@
 
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 
+@protocol PlayerDelegate <NSObject>
+
+- (void)playerDidFinish:(NSDictionary*)dict;
+
+@end
+
 @interface YoutubeChildViewController : XCDYouTubeVideoPlayerViewController
+
+@property (nonatomic, assign) id <PlayerDelegate> delegate;
 
 @end

@@ -42,6 +42,8 @@
 
 #define kAlert @"Thông báo"
 
+#define adAPI @"ca-app-pub-9549102114287819/2355629484"
+
 #define kAPI @"AIzaSyDRgzUFgHr3SjyYfEzmXoYjH459Upmsb_Q"
 
 #define KClientID @"1027585495403-4an516grn0soobbc93kvqc1cpr9cdf5m.apps.googleusercontent.com"
