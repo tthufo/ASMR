@@ -69,8 +69,13 @@
     
     if([[self getValue:@"detail"] intValue] % 6 == 0 && self.interstitial.isReady)
     {
-        [self.interstitial presentFromRootViewController:self];
+        [self performSelector:@selector(presentAds) withObject:nil afterDelay:2];
     }
+}
+
+- (void)presentAds
+{
+    [self.interstitial presentFromRootViewController:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
