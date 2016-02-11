@@ -30,8 +30,15 @@
                           -[theView bounds].size.height * [[theView layer] anchorPoint].y);
     
     //	[theView.layer renderInContext:context];
-    [theView drawViewHierarchyInRect:[theView bounds] afterScreenUpdates:NO];
     
+    if(SYSTEM_VERSION_LESS_THAN(@"7"))
+    {
+        
+    }
+    else
+    {
+        [theView drawViewHierarchyInRect:[theView bounds] afterScreenUpdates:NO];
+    }
     // Restore the context
     CGContextRestoreGState(context);
     

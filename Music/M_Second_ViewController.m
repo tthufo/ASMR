@@ -68,7 +68,7 @@
         [self addValue:[NSString stringWithFormat:@"%i", count] andKey:@"fav"];
     }
     
-    if([[self getValue:@"fav"] intValue] % 6 == 0 && self.interstitial.isReady)
+    if([[self getValue:@"fav"] intValue] % 3 == 0 && self.interstitial.isReady)
     {
         [self performSelector:@selector(presentAds) withObject:nil afterDelay:2];
     }
@@ -116,13 +116,13 @@
     
     self.navigationItem.rightBarButtonItem = seachBar;
     
-    searchBar.frame = CGRectMake(0, 66, screenWidth, 35);
+    searchBar.frame = CGRectMake(0, SYSTEM_VERSION_LESS_THAN(@"7") ? 2 : 66, screenWidth, 35);
     
     searchBar.delegate = self;
     
 //    search.frame = CGRectMake(0, 66, screenWidth, 35);
     
-    tableView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    tableView.frame = CGRectMake(0, SYSTEM_VERSION_LESS_THAN(@"7") ? 0.1 : 0, screenWidth, screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 114 : 0));
     
     for (id object in [[[searchBar subviews] firstObject] subviews])
     {
@@ -253,7 +253,7 @@
     
     [((UIButton*)[self withView:cell tag:697]) addTapTarget:self action:@selector(didPressFavorite:)];
     
-    NSString * videoId = [NSString stringWithFormat:@"%@+%@", dict[@"snippet"][@"title"],dict[@"snippet"][@"resourceId"][@"videoId"]];
+    NSString * videoId = [NSString stringWithFormat:@"%@+%@", dict[@"snippet"][@"title"],dict[@"snippet"][@"resourceId"][@"videoId"] ? dict[@"snippet"][@"resourceId"][@"videoId"] : dict[@"id"][@"videoId"]];
     
     NSArray * data = [System getFormat:@"key=%@" argument:@[videoId]];
     
@@ -268,9 +268,9 @@
 {
     int indexing = [self inDexOf:sender andTable:tableView];
     
-    NSString * url = [NSString stringWithFormat: @"https://www.youtube.com/watch?v=%@",[System getValue:((System*)dataList[indexing]).key][@"snippet"][@"resourceId"][@"videoId"]];
+    NSString * url = [NSString stringWithFormat: @"https://www.youtube.com/watch?v=%@",[System getValue:((System*)dataList[indexing]).key][@"snippet"][@"resourceId"][@"videoId"] ? [System getValue:((System*)dataList[indexing]).key][@"snippet"][@"resourceId"][@"videoId"] : [System getValue:((System*)dataList[indexing]).key][@"id"][@"videoId"]];
     
-    [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR videos",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
+    [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR video",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
         
 //        NSLog(@"%i",errorCode);
         
@@ -298,11 +298,13 @@
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    [self.view endEditing:YES];
+    
     if(dataList.count == 0) return;
     
     NSDictionary * dict = [System getValue:((System*)dataList[indexPath.row]).key];
     
-    YoutubeChildViewController *videoPlayerViewController = [[YoutubeChildViewController alloc] initWithVideoIdentifier:dict[@"snippet"][@"resourceId"][@"videoId"]];
+    YoutubeChildViewController *videoPlayerViewController = [[YoutubeChildViewController alloc] initWithVideoIdentifier:dict[@"snippet"][@"resourceId"][@"videoId"] ? dict[@"snippet"][@"resourceId"][@"videoId"] : dict[@"id"][@"videoId"]];
     
     videoPlayerViewController.delegate = self;
     
@@ -317,7 +319,6 @@
         }
     }];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

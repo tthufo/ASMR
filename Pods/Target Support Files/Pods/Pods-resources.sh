@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "FBPLUGIN/Pod/Assets/GoogleMobileAds.framework"
   install_resource "FBPLUGIN/Pod/Assets/model.xcdatamodeld"
   install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
   install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"
@@ -68,6 +69,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/FBPLUGIN.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "FBPLUGIN/Pod/Assets/GoogleMobileAds.framework"
   install_resource "FBPLUGIN/Pod/Assets/model.xcdatamodeld"
   install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
   install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"

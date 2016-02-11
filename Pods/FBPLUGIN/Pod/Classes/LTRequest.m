@@ -55,7 +55,7 @@ static LTRequest *__sharedLTRequest = nil;
 
 - (void)didFailToRegisterForRemoteNotification:(NSError *)error
 {
-    [self alert:@"Attention" message:[error localizedDescription]];
+    [self alert:@"Thông báo" message:[error localizedDescription]];
 }
 
 - (void)didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -120,7 +120,7 @@ static LTRequest *__sharedLTRequest = nil;
     
     if(!dict)
     {
-        [host alert:@"Attention" message:@"Server is not responding"];
+        [host alert:@"Attention" message:@"Server error"];
         
         return NO;
     }
@@ -244,7 +244,7 @@ static LTRequest *__sharedLTRequest = nil;
         {
             if([dict responseForKey:@"host"])
             {
-                [self alert:@"Attention" message:@"Please check your Internet Connection"];
+                [self alert:@"Attention" message:@"Please check your Internet connection"];
                 [dict[@"host"] hideSVHUD];
             }
             

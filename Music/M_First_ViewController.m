@@ -53,8 +53,12 @@
     
     nextPage = @"";
     
-    UIBarButtonItem * menu = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(didPressMenu)];
-    self.navigationItem.rightBarButtonItem = menu;
+    UIBarButtonItem * menu = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:SYSTEM_VERSION_LESS_THAN(@"7") ? @"menu6" : @"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(didPressMenu)];
+    self.navigationItem.leftBarButtonItem = menu;
+
+    UIBarButtonItem * share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(didPressShare)];
+    self.navigationItem.rightBarButtonItem = share;
+
     
     currentId = [menuList firstObject][@"id"];
     
@@ -74,6 +78,13 @@
     refresh.tag = 6996;
     [refresh addTarget:self action:@selector(didReload) forControlEvents:UIControlEventValueChanged];
     [tableView addSubview:refresh];
+}
+
+- (void)didPressShare
+{
+    [[FB shareInstance] startShareWithInfo:@[@"ASMRTube for your relaxation and more ",@"https://itunes.apple.com/us/developer/thanh-hai-tran/id1073174100",[UIImage imageNamed:@"Icon-76"]] andBase:nil andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
+        
+    }];
 }
 
 - (void)didRequestData:(NSString *)channelId
@@ -147,7 +158,7 @@
     }
     else
     {
-        [dropdownView showInView:self.view withFrame:CGRectMake(0, 64, screenWidth, screenHeight)];
+        [dropdownView showInView:self.view withFrame:CGRectMake(0, SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, screenWidth, screenHeight)];
     }
 }
 

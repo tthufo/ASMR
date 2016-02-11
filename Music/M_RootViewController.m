@@ -12,6 +12,8 @@
 
 #import "M_Second_ViewController.h"
 
+#import "M_Third_ViewController.h"
+
 @interface M_RootViewController ()
 
 @end
@@ -38,7 +40,13 @@
                                              initWithRootViewController:second];
     nav2.tabBarItem.image = [UIImage imageNamed:@"favs"];
 
-    self.viewControllers = @[nav1, nav2];
+    M_Third_ViewController * third = [M_Third_ViewController new];
+    third.title = @"Search";
+    UINavigationController *nav3 = [[UINavigationController alloc]
+                                    initWithRootViewController:third];
+    nav3.tabBarItem.image = [UIImage imageNamed:@"search"];
+    
+    self.viewControllers = @[nav1, nav3, nav2];
 }
 
 - (void)didReceiveMemoryWarning

@@ -44,17 +44,11 @@
 
 #define adAPI @"ca-app-pub-9549102114287819/2355629484"
 
+#define bannerAPI @"ca-app-pub-9549102114287819/6647190689"
+
+#define searchAdAPI @"ca-app-pub-9549102114287819/2716518687"
+
 #define kAPI @"AIzaSyDRgzUFgHr3SjyYfEzmXoYjH459Upmsb_Q"
-
-#define KClientID @"1027585495403-4an516grn0soobbc93kvqc1cpr9cdf5m.apps.googleusercontent.com"
-
-#define kUrlScheme @"com.googleusercontent.apps.1027585495403-4an516grn0soobbc93kvqc1cpr9cdf5m"
-
-///Server
-#define SERVER @"apps.thethaoso.vn//ProcessRequest"
-#define SERVER_ADDR [NSString stringWithFormat:@"http://%@", SERVER]
-#define service(X) [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", SERVER_ADDR, X]]]
-#define REQUEST [ASIFormDataRequest requestWithURL:[NSURL URLWithString:SERVER_ADDR]]
 
 ///Header
 

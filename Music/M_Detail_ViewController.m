@@ -67,7 +67,7 @@
         [self addValue:[NSString stringWithFormat:@"%i", count] andKey:@"detail"];
     }
     
-    if([[self getValue:@"detail"] intValue] % 6 == 0 && self.interstitial.isReady)
+    if([[self getValue:@"detail"] intValue] % 3 == 0 && self.interstitial.isReady)
     {
         [self performSelector:@selector(presentAds) withObject:nil afterDelay:2];
     }
@@ -93,9 +93,19 @@
     
     dataList = [NSMutableArray new];
     
+    if(SYSTEM_VERSION_LESS_THAN(@"7"))
+    {
+        UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didPressDone)];
+        self.navigationItem.leftBarButtonItem = back;
+    }
     [self createAndLoadInterstitial];
     
     [self didRequestData];
+}
+
+- (void)didPressDone
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didRequestData

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7BD313D2D8E8C05DF69439DC'
+               BlueprintIdentifier = '52960B6094752BAEF4DF4A23'
                BlueprintName = 'DAKeyboardControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libDAKeyboardControl.a'>

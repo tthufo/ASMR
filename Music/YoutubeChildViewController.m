@@ -8,6 +8,8 @@
 
 #import "YoutubeChildViewController.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @interface YoutubeChildViewController ()<UIGestureRecognizerDelegate>
 {
     NSTimer * timer;
@@ -21,31 +23,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-//    button.frame = CGRectMake(screenWidth - 55, screenHeight - 110, 55, 55);
-//    [self.view addSubview:button];
-//    button.alpha = 0;
-//    button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-//    UIViewAutoresizingFlexibleTopMargin;
-//    [self showSVHUD:@"Loading" andOption:0];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-//    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPressSelf:)];
-//    tap.numberOfTapsRequired = 1;
-//    tap.delegate = self;
-//    [self.view addGestureRecognizer:tap];
-//    
-//    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doDoubleTap:)];
-//    doubleTap.numberOfTapsRequired = 2;
-//    doubleTap.delegate = self;
-//    [self.view addGestureRecognizer:doubleTap];
-//    
-//    [tap requireGestureRecognizerToFail:doubleTap];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(MPMoviePlayerPlaybackStateDidChange:)
@@ -56,31 +43,53 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self hideSVHUD];
+    
     [self.delegate playerDidFinish:@{}];
+    
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
 }
 
-- (void)didStartView
+- (BOOL)canBecomeFirstResponder
 {
-    //[button fadeView:0.6 andOr:YES];
+    return YES;
 }
 
-//- (void)didStartTimer:(BOOL)isViewing
-//{
-//    if(timer)
-//    {
-//        [timer invalidate];
-//        timer = nil;
-//    }
-//    if(isViewing)
-//    {
-//        timer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(didStartView) userInfo:nil repeats:NO];
-//    }
-//}
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    if (event.type == UIEventTypeRemoteControl)
+    {
+        if (event.subtype == UIEventSubtypeRemoteControlPlay)
+        {
+
+        }
+        else if (event.subtype == UIEventSubtypeRemoteControlPause)
+        {
+
+        }
+        else if (event.subtype == UIEventSubtypeRemoteControlTogglePlayPause)
+        {
+
+        }
+        else if (event.subtype == UIEventSubtypeRemoteControlNextTrack)
+        {
+
+        }
+        else if (event.subtype == UIEventSubtypeRemoteControlPreviousTrack)
+        {
+
+        }
+    }
+}
 
 - (void)MPMoviePlayerPlaybackStateDidChange:(NSNotification *)notification
 {
+    MPMoviePlayerController *moviePlayer = notification.object;
+//    MPMoviePlaybackState playbackState = moviePlayer.e;
+    
+    
     if (self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying)
     {
 //        [self didStartTimer:YES];
@@ -88,7 +97,7 @@
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStateStopped)
     {
-        [self hideSVHUD];
+//        [self hideSVHUD];
     }
     if (self.moviePlayer.playbackState == MPMoviePlaybackStatePaused)
     {

@@ -30,6 +30,7 @@
     self.window.rootViewController =  [M_RootViewController new];//[[UINavigationController alloc] initWithRootViewController:[M_First_ViewController new]];
     
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
