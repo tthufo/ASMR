@@ -27,32 +27,32 @@
 
 @synthesize playListId, titleName;
 
-- (void)createAndLoadInterstitial
-{
-    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:adAPI];
-    
-    self.interstitial.delegate = self;
-    
-    GADRequest *request = [GADRequest request];
-    
-//    request.testDevices = @[
-//                            kGADSimulatorID,@"a104de0d0aca5165d505f82e691ba8cd"
-//                            ];
-    
-    [self.interstitial loadRequest:request];
-}
-
-#pragma mark GADInterstitialDelegate implementation
-
-- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
-{
-
-}
-
-- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
-{
-    [self createAndLoadInterstitial];
-}
+//- (void)createAndLoadInterstitial
+//{
+//    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:adAPI];
+//    
+//    self.interstitial.delegate = self;
+//    
+//    GADRequest *request = [GADRequest request];
+//    
+////    request.testDevices = @[
+////                            kGADSimulatorID,@"a104de0d0aca5165d505f82e691ba8cd"
+////                            ];
+//    
+//    [self.interstitial loadRequest:request];
+//}
+//
+//#pragma mark GADInterstitialDelegate implementation
+//
+//- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
+//{
+//
+//}
+//
+//- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
+//{
+//    [self createAndLoadInterstitial];
+//}
 
 - (void)playerDidFinish:(NSDictionary*)dict
 {
@@ -67,7 +67,7 @@
         [self addValue:[NSString stringWithFormat:@"%i", count] andKey:@"detail"];
     }
     
-    if([[self getValue:@"detail"] intValue] % 3 == 0 && self.interstitial.isReady)
+    if([[self getValue:@"detail"] intValue] % 3 == 0)// && self.interstitial.isReady)
     {
         [self performSelector:@selector(presentAds) withObject:nil afterDelay:2];
     }
@@ -75,7 +75,34 @@
 
 - (void)presentAds
 {
-    [self.interstitial presentFromRootViewController:self];
+//    [self.interstitial presentFromRootViewController:self];
+    [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+        switch (event)
+        {
+            case AdsDone:
+            {
+                
+            }
+                break;
+            case AdsFailed:
+            {
+                
+            }
+                break;
+            case AdsWillPresent:
+            {
+                
+            }
+                break;
+            case AdsWillLeave:
+            {
+                
+            }
+                break;
+            default:
+                break;
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,7 +125,7 @@
         UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didPressDone)];
         self.navigationItem.leftBarButtonItem = back;
     }
-    [self createAndLoadInterstitial];
+//    [self createAndLoadInterstitial];
     
     [self didRequestData];
 }

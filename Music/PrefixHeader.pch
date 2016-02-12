@@ -31,7 +31,7 @@
 
 #define dDeviceOrientation [[UIDevice currentDevice] orientation]
 #define isPortrait  UIDeviceOrientationIsPortrait(dDeviceOrientation)
-#define isLandscape UIDeviceOrientationIsLandscape(dDeviceOrientation)
+#define isLandScape UIDeviceOrientationIsLandscape(dDeviceOrientation)
 #define isFaceUp    dDeviceOrientation == UIDeviceOrientationFaceUp   ? YES : NO
 #define isFaceDown  dDeviceOrientation == UIDeviceOrientationFaceDown ? YES : NO
 
@@ -40,7 +40,9 @@
 
 #define kAvatar [UIImage imageNamed:@"no-avatar"]
 
-#define kAlert @"Thông báo"
+#define kStartAppId @"201796177"
+
+#define kStartAppDev @"101179665"
 
 #define adAPI @"ca-app-pub-9549102114287819/2355629484"
 
@@ -69,5 +71,7 @@
 #import "FBPlugInHeader.h"
 
 #import "UIViewController+Additional.h"
+
+#import "StartAds.h"
 
 #endif /* PrefixHeader_pch */

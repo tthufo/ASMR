@@ -17,6 +17,9 @@
 		FC0376481C05897F00A5B48E /* LMDropdownViewChild.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0376451C05897F00A5B48E /* LMDropdownViewChild.m */; };
 		FC0376491C05897F00A5B48E /* UIImage+LMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0376471C05897F00A5B48E /* UIImage+LMImage.m */; };
 		FC03764B1C05913000A5B48E /* MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC03764A1C05913000A5B48E /* MenuList.plist */; };
+		FC0B08991C6E4BDB008B58D9 /* StartAds.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0B08961C6E4BDB008B58D9 /* StartAds.m */; };
+		FC0B089A1C6E4BDB008B58D9 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */; };
+		FC0B089B1C6E4BDB008B58D9 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0B08981C6E4BDB008B58D9 /* StartApp.framework */; };
 		FC22F86E1C040D67007BE57D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC22F86D1C040D67007BE57D /* main.m */; };
 		FC22F8711C040D67007BE57D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC22F8701C040D67007BE57D /* AppDelegate.m */; };
 		FC22F8741C040D67007BE57D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC22F8731C040D67007BE57D /* ViewController.m */; };
@@ -53,6 +56,10 @@
 		FC0376461C05897F00A5B48E /* UIImage+LMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LMImage.h"; sourceTree = "<group>"; };
 		FC0376471C05897F00A5B48E /* UIImage+LMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LMImage.m"; sourceTree = "<group>"; };
 		FC03764A1C05913000A5B48E /* MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList.plist; sourceTree = "<group>"; };
+		FC0B08951C6E4BDB008B58D9 /* StartAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAds.h; sourceTree = "<group>"; };
+		FC0B08961C6E4BDB008B58D9 /* StartAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAds.m; sourceTree = "<group>"; };
+		FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
+		FC0B08981C6E4BDB008B58D9 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
 		FC22F8691C040D67007BE57D /* ASMRTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASMRTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC22F86D1C040D67007BE57D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC22F86F1C040D67007BE57D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0B089B1C6E4BDB008B58D9 /* StartApp.framework in Frameworks */,
 				FC690CDE1C6B69DA00D940D9 /* JavaScriptCore.framework in Frameworks */,
 				00A825720C4699CB0B7A0E9F /* libPods.a in Frameworks */,
 			);
@@ -111,6 +119,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC0B08941C6E4BC6008B58D9 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B08951C6E4BDB008B58D9 /* StartAds.h */,
+				FC0B08961C6E4BDB008B58D9 /* StartAds.m */,
+				FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */,
+				FC0B08981C6E4BDB008B58D9 /* StartApp.framework */,
+			);
+			name = Ads;
+			sourceTree = "<group>";
+		};
 		FC22F8601C040D67007BE57D = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +151,7 @@
 		FC22F86B1C040D67007BE57D /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				FC0B08941C6E4BC6008B58D9 /* Ads */,
 				FC22F8A01C040F8C007BE57D /* Default */,
 				FC22F8881C040E46007BE57D /* Category */,
 				FC22F8871C040E41007BE57D /* Request */,
@@ -271,6 +291,7 @@
 				FC0376431C054DD900A5B48E /* M_Second_ViewController.xib in Resources */,
 				FC417B361C3B72640076D9DC /* Default-568h@2x.png in Resources */,
 				FC0364DF1C67AE1600EDB6EF /* M_Third_ViewController.xib in Resources */,
+				FC0B089A1C6E4BDB008B58D9 /* StartApp.bundle in Resources */,
 				FC03764B1C05913000A5B48E /* MenuList.plist in Resources */,
 				FC03763E1C04D57700A5B48E /* M_Detail_ViewController.xib in Resources */,
 				FC22F87C1C040D67007BE57D /* Assets.xcassets in Resources */,
@@ -347,6 +368,7 @@
 				FC22F86E1C040D67007BE57D /* main.m in Sources */,
 				FC0376481C05897F00A5B48E /* LMDropdownViewChild.m in Sources */,
 				FC0376421C054DD900A5B48E /* M_Second_ViewController.m in Sources */,
+				FC0B08991C6E4BDB008B58D9 /* StartAds.m in Sources */,
 				FC417B3B1C3BACA50076D9DC /* UIViewController+Additional.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +487,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Hai Tran (N3994DUH8M)";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Music",
+				);
 				GCC_PREFIX_HEADER = Music/PrefixHeader.pch;
 				INFOPLIST_FILE = Music/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -548,6 +574,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Thanh Hai Tran (2A57FFFJMN)";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Music",
+				);
 				GCC_PREFIX_HEADER = Music/PrefixHeader.pch;
 				INFOPLIST_FILE = Music/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

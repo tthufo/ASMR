@@ -120,7 +120,7 @@ static LTRequest *__sharedLTRequest = nil;
     
     if(!dict)
     {
-        [host alert:@"Attention" message:@"Server error"];
+        [host alert:@"Thông báo" message:@"Hệ thống đang bận"];
         
         return NO;
     }
@@ -144,7 +144,7 @@ static LTRequest *__sharedLTRequest = nil;
     }
     else
     {
-        [self showToast:[dict responseForKey:@"ERR_CODE"] ? dict[@"ERR_MSG"] : @"Server error, please try again" andPos:0];
+        [self showToast:[dict responseForKey:@"ERR_CODE"] ? dict[@"ERR_MSG"] : @"Lỗi hệ thống xảy ra, xin hãy thử lại" andPos:0];
     }
     
     return NO;
@@ -182,14 +182,14 @@ static LTRequest *__sharedLTRequest = nil;
         {
             if([dict responseForKey:@"host"])
             {
-                [(UIViewController*)dict[@"host"] showSVHUD:@"Loading" andOption:0];
+                [(UIViewController*)dict[@"host"] showSVHUD:@"Đang tải" andOption:0];
             }
         }
         if([dict responseForKey:@"overrideLoading"])
         {
             if([dict responseForKey:@"host"])
             {
-                [(UIViewController*)dict[@"host"] showSVHUD:@"Loading" andOption:0];
+                [(UIViewController*)dict[@"host"] showSVHUD:@"Đang tải" andOption:0];
             }
         }
     }
@@ -224,14 +224,14 @@ static LTRequest *__sharedLTRequest = nil;
         {
             if([dict responseForKey:@"host"])
             {
-                [dict[@"host"] showSVHUD:@"Loading" andOption:0];
+                [dict[@"host"] showSVHUD:@"Đang tải" andOption:0];
             }
         }
         if([dict responseForKey:@"overrideLoading"])
         {
             if([dict responseForKey:@"host"])
             {
-                [dict[@"host"] showSVHUD:@"Loading" andOption:0];
+                [dict[@"host"] showSVHUD:@"Đang tải" andOption:0];
             }
         }
     }
@@ -244,7 +244,7 @@ static LTRequest *__sharedLTRequest = nil;
         {
             if([dict responseForKey:@"host"])
             {
-                [self alert:@"Attention" message:@"Please check your Internet connection"];
+                [self alert:@"Thông báo" message:@"Vui lòng kiểm tra lại kết nối Internet"];
                 [dict[@"host"] hideSVHUD];
             }
             

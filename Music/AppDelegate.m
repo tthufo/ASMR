@@ -16,6 +16,8 @@
 
 #import "M_RootViewController.h"
 
+#import <StartApp/StartApp.h>
+
 @interface AppDelegate ()
 
 @end
@@ -25,6 +27,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    STAStartAppSDK* sdk = [STAStartAppSDK sharedInstance];
+    sdk.appID = kStartAppId;
+    sdk.devID = kStartAppDev;
+    
     [[LTRequest sharedInstance] initRequest];
     
     self.window.rootViewController =  [M_RootViewController new];//[[UINavigationController alloc] initWithRootViewController:[M_First_ViewController new]];

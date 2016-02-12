@@ -45,6 +45,7 @@
         
     } withIndicatorColor:[UIColor grayColor]];
     
+    /*
     [[Ads sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"X":@(screenWidth),@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100)),@"adsId":bannerAPI,@"":@"d9024897b1d27634898743a5431cc4a6"} andCompletion:^(BannerEvent event, NSError *error, id banner) {
         
         switch (event)
@@ -71,6 +72,35 @@
                 break;
             case AdsWillLeave:
                 
+                break;
+            default:
+                break;
+        }
+    }];
+    */
+    
+    [[StartAds sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100))} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+        switch (event)
+        {
+            case AdsDone:
+            {
+                tableView.contentInset = UIEdgeInsetsMake(SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, 0, SYSTEM_VERSION_LESS_THAN(@"7") ? 50 : 100, 0);
+            }
+                break;
+            case AdsFailed:
+            {
+                
+            }
+                break;
+            case AdsWillPresent:
+            {
+                
+            }
+                break;
+            case AdsWillLeave:
+            {
+                
+            }
                 break;
             default:
                 break;
@@ -138,15 +168,42 @@
 
 - (void)showAds
 {
-    [[Ads sharedInstance] didShowFullAdsWithInfor:@{@"host":self,@"adsId":searchAdAPI,@"":@""} andCompletion:^(BannerEvent event, NSError *error, id banner) {
-        
+//    [[Ads sharedInstance] didShowFullAdsWithInfor:@{@"host":self,@"adsId":searchAdAPI,@"":@""} andCompletion:^(BannerEvent event, NSError *error, id banner) {
+//        
+//        switch (event)
+//        {
+//            case AdsDone:
+//                
+//                break;
+//            case AdsFailed:
+//                
+//                break;
+//            default:
+//                break;
+//        }
+//    }];
+    [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
         switch (event)
         {
             case AdsDone:
+            {
                 
+            }
                 break;
             case AdsFailed:
+            {
                 
+            }
+                break;
+            case AdsWillPresent:
+            {
+                
+            }
+                break;
+            case AdsWillLeave:
+            {
+                
+            }
                 break;
             default:
                 break;
