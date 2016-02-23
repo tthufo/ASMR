@@ -77,33 +77,36 @@
 - (void)presentAds
 {
 //    [self.interstitial presentFromRootViewController:self];
-    [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-        switch (event)
-        {
-            case AdsDone:
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+            switch (event)
             {
-                
+                case AdsDone:
+                {
+                    
+                }
+                    break;
+                case AdsFailed:
+                {
+                    
+                }
+                    break;
+                case AdsWillPresent:
+                {
+                    
+                }
+                    break;
+                case AdsWillLeave:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AdsFailed:
-            {
-                
-            }
-                break;
-            case AdsWillPresent:
-            {
-                
-            }
-                break;
-            case AdsWillLeave:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }];
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -299,7 +302,6 @@
     
     [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR video",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
         
-//        NSLog(@"%i",errorCode);
         
     }];
 }
@@ -310,7 +312,9 @@
     
     NSDictionary * dict = [System getValue:((System*)dataList[indexing]).key];
     
-    NSString * videoId = [NSString stringWithFormat:@"%@+%@", dict[@"snippet"][@"title"],dict[@"snippet"][@"resourceId"][@"videoId"]];
+    NSLog(@"%@",dict);
+    
+    NSString * videoId = [NSString stringWithFormat:@"%@+%@", dict[@"snippet"][@"title"],dict[@"snippet"][@"resourceId"][@"videoId"] ? dict[@"snippet"][@"resourceId"][@"videoId"] : dict[@"id"][@"videoId"]];
     
     [System removeValue:videoId];
 

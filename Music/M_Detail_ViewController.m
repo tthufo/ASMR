@@ -76,33 +76,36 @@
 - (void)presentAds
 {
 //    [self.interstitial presentFromRootViewController:self];
-    [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-        switch (event)
-        {
-            case AdsDone:
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+            switch (event)
             {
-                
+                case AdsDone:
+                {
+                    
+                }
+                    break;
+                case AdsFailed:
+                {
+                    
+                }
+                    break;
+                case AdsWillPresent:
+                {
+                    
+                }
+                    break;
+                case AdsWillLeave:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AdsFailed:
-            {
-                
-            }
-                break;
-            case AdsWillPresent:
-            {
-                
-            }
-                break;
-            case AdsWillLeave:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }];
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

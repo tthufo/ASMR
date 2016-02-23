@@ -20,7 +20,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
   - DAKeyboardControl (2.4.0)
-  - FBPLUGIN (0.1.9):
+  - FBPLUGIN (0.2.9):
     - ASIHTTPRequest (~> 1.8)
     - AVHexColor (~> 2.0)
     - FBSDKCoreKit (~> 4.4)
@@ -71,7 +71,7 @@ PODS:
 
 DEPENDENCIES:
   - DAKeyboardControl (~> 2.4)
-  - FBPLUGIN (~> 0.1.9)
+  - FBPLUGIN (~> 0.2.9)
   - Google-Mobile-Ads-SDK (~> 7.5)
   - NSDate+TimeAgo (~> 1.0)
   - SDWebImage (~> 3.7)
@@ -84,7 +84,7 @@ SPEC CHECKSUMS:
   AVHexColor: 33e5e102f3b6f3acd002779183ee226e21870c28
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   DAKeyboardControl: 9d9bca22a5cc3c1d3cc61e24fbd208c3e84a3d2d
-  FBPLUGIN: 059f762e91f95eba1f2d4b7a4335b71bf577fefd
+  FBPLUGIN: d0c6cbf2a623705265aa08539b5e60118a4c76c3
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a

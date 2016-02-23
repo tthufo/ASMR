@@ -133,7 +133,7 @@
 		FC22F8601C040D67007BE57D = {
 			isa = PBXGroup;
 			children = (
-				FC22F86B1C040D67007BE57D /* Music */,
+				FC22F86B1C040D67007BE57D /* Asmr */,
 				FC22F86A1C040D67007BE57D /* Products */,
 				58F1A6D6F23EE763799FE5CF /* Pods */,
 				D605DFCDEFAAF1AF87AE6C8D /* Frameworks */,
@@ -148,7 +148,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FC22F86B1C040D67007BE57D /* Music */ = {
+		FC22F86B1C040D67007BE57D /* Asmr */ = {
 			isa = PBXGroup;
 			children = (
 				FC0B08941C6E4BC6008B58D9 /* Ads */,
@@ -176,6 +176,7 @@
 				FC2C63BA1C3CC829005CE51F /* M_RootViewController.h */,
 				FC2C63BB1C3CC829005CE51F /* M_RootViewController.m */,
 			);
+			name = Asmr;
 			path = Music;
 			sourceTree = "<group>";
 		};

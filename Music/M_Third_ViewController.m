@@ -79,34 +79,36 @@
     }];
     */
     
-    [[StartAds sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100))} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-        switch (event)
-        {
-            case AdsDone:
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        [[StartAds sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100))} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+            switch (event)
             {
-                tableView.contentInset = UIEdgeInsetsMake(SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, 0, SYSTEM_VERSION_LESS_THAN(@"7") ? 50 : 100, 0);
+                case AdsDone:
+                {
+                    tableView.contentInset = UIEdgeInsetsMake(SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, 0, SYSTEM_VERSION_LESS_THAN(@"7") ? 50 : 100, 0);
+                }
+                    break;
+                case AdsFailed:
+                {
+                    
+                }
+                    break;
+                case AdsWillPresent:
+                {
+                    
+                }
+                    break;
+                case AdsWillLeave:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AdsFailed:
-            {
-                
-            }
-                break;
-            case AdsWillPresent:
-            {
-                
-            }
-                break;
-            case AdsWillLeave:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }];
-    
+        }];
+    }
     dataList = [NSMutableArray new];
     
     for (id object in [[[searchBar subviews] firstObject] subviews])
@@ -182,37 +184,47 @@
 //                break;
 //        }
 //    }];
-    [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-        switch (event)
-        {
-            case AdsDone:
+    
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+            switch (event)
             {
-                
+                case AdsDone:
+                {
+                    
+                }
+                    break;
+                case AdsFailed:
+                {
+                    
+                }
+                    break;
+                case AdsWillPresent:
+                {
+                    
+                }
+                    break;
+                case AdsWillLeave:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case AdsFailed:
-            {
-                
-            }
-                break;
-            case AdsWillPresent:
-            {
-                
-            }
-                break;
-            case AdsWillLeave:
-            {
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }];
+        }];
+    }
 }
 
 - (void)didRequestData
 {
+    if(searchBar.text.length == 0)
+    {
+        [tableView performSelector:@selector(footerEndRefreshing) withObject:nil afterDelay:0.5];
+
+        return;
+    }
     NSString * url = [NSString stringWithFormat:@"https://www.googleapis.com/youtube/v3/search?part=snippet&q=%@|asmr -music&type=video&maxResults=25&key=AIzaSyB9IuIAwAJQhhSOQY3rn4bc9A2EjpdG_7c",searchBar.text];
     
     if(nextPage.length != 0)
