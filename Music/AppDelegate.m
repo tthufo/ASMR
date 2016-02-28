@@ -31,6 +31,8 @@
     sdk.appID = kStartAppId;
     sdk.devID = kStartAppDev;
     
+    [self addObject:@{@"banner":@"0",@"fullBanner":@"0",@"adsMob":@"0"} andKey:@"adsInfo"];
+    
     [[LTRequest sharedInstance] initRequest];
     
     self.window.rootViewController =  [M_RootViewController new];//[[UINavigationController alloc] initWithRootViewController:[M_First_ViewController new]];

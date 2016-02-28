@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DE8B9FD2F8F34E8054D2F31A'
+               BlueprintIdentifier = '1EF6822EB9F7DA60E5988568'
                BlueprintName = 'FBPLUGIN'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libFBPLUGIN.a'>

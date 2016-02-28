@@ -72,6 +72,8 @@
 
 #import "UIViewController+Additional.h"
 
-#import "StartAds.h"
+#import "DropButton.h"
+
+#import "Ads.h"
 
 #endif /* PrefixHeader_pch */

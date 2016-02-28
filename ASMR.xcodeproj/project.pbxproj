@@ -17,7 +17,6 @@
 		FC0376481C05897F00A5B48E /* LMDropdownViewChild.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0376451C05897F00A5B48E /* LMDropdownViewChild.m */; };
 		FC0376491C05897F00A5B48E /* UIImage+LMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0376471C05897F00A5B48E /* UIImage+LMImage.m */; };
 		FC03764B1C05913000A5B48E /* MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC03764A1C05913000A5B48E /* MenuList.plist */; };
-		FC0B08991C6E4BDB008B58D9 /* StartAds.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0B08961C6E4BDB008B58D9 /* StartAds.m */; };
 		FC0B089A1C6E4BDB008B58D9 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */; };
 		FC0B089B1C6E4BDB008B58D9 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0B08981C6E4BDB008B58D9 /* StartApp.framework */; };
 		FC22F86E1C040D67007BE57D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC22F86D1C040D67007BE57D /* main.m */; };
@@ -35,6 +34,7 @@
 		FC417B381C3B72640076D9DC /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = FC417B351C3B72640076D9DC /* Default~iphone.png */; };
 		FC417B3B1C3BACA50076D9DC /* UIViewController+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = FC417B3A1C3BACA50076D9DC /* UIViewController+Additional.m */; };
 		FC690CDE1C6B69DA00D940D9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC690CDD1C6B69DA00D940D9 /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FC724E7B1C81520100BF4B8A /* Ads.m in Sources */ = {isa = PBXBuildFile; fileRef = FC724E7A1C81520100BF4B8A /* Ads.m */; };
 		FCB3DA231C0B5970000A6550 /* YoutubeChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB3DA221C0B5970000A6550 /* YoutubeChildViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +56,6 @@
 		FC0376461C05897F00A5B48E /* UIImage+LMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LMImage.h"; sourceTree = "<group>"; };
 		FC0376471C05897F00A5B48E /* UIImage+LMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LMImage.m"; sourceTree = "<group>"; };
 		FC03764A1C05913000A5B48E /* MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList.plist; sourceTree = "<group>"; };
-		FC0B08951C6E4BDB008B58D9 /* StartAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAds.h; sourceTree = "<group>"; };
-		FC0B08961C6E4BDB008B58D9 /* StartAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAds.m; sourceTree = "<group>"; };
 		FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = StartApp.bundle; sourceTree = "<group>"; };
 		FC0B08981C6E4BDB008B58D9 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StartApp.framework; sourceTree = "<group>"; };
 		FC22F8691C040D67007BE57D /* ASMRTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASMRTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +81,8 @@
 		FC417B391C3BACA50076D9DC /* UIViewController+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Additional.h"; sourceTree = "<group>"; };
 		FC417B3A1C3BACA50076D9DC /* UIViewController+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Additional.m"; sourceTree = "<group>"; };
 		FC690CDD1C6B69DA00D940D9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FC724E791C81520100BF4B8A /* Ads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ads.h; sourceTree = "<group>"; };
+		FC724E7A1C81520100BF4B8A /* Ads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ads.m; sourceTree = "<group>"; };
 		FCB3DA211C0B5970000A6550 /* YoutubeChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeChildViewController.h; sourceTree = "<group>"; };
 		FCB3DA221C0B5970000A6550 /* YoutubeChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeChildViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,8 +122,8 @@
 		FC0B08941C6E4BC6008B58D9 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
-				FC0B08951C6E4BDB008B58D9 /* StartAds.h */,
-				FC0B08961C6E4BDB008B58D9 /* StartAds.m */,
+				FC724E791C81520100BF4B8A /* Ads.h */,
+				FC724E7A1C81520100BF4B8A /* Ads.m */,
 				FC0B08971C6E4BDB008B58D9 /* StartApp.bundle */,
 				FC0B08981C6E4BDB008B58D9 /* StartApp.framework */,
 			);
@@ -362,6 +362,7 @@
 				FC22F8741C040D67007BE57D /* ViewController.m in Sources */,
 				FC0376491C05897F00A5B48E /* UIImage+LMImage.m in Sources */,
 				FC03763D1C04D57700A5B48E /* M_Detail_ViewController.m in Sources */,
+				FC724E7B1C81520100BF4B8A /* Ads.m in Sources */,
 				FC0364DE1C67AE1600EDB6EF /* M_Third_ViewController.m in Sources */,
 				FC2C63BC1C3CC829005CE51F /* M_RootViewController.m in Sources */,
 				FC22F8711C040D67007BE57D /* AppDelegate.m in Sources */,
@@ -369,7 +370,6 @@
 				FC22F86E1C040D67007BE57D /* main.m in Sources */,
 				FC0376481C05897F00A5B48E /* LMDropdownViewChild.m in Sources */,
 				FC0376421C054DD900A5B48E /* M_Second_ViewController.m in Sources */,
-				FC0B08991C6E4BDB008B58D9 /* StartAds.m in Sources */,
 				FC417B3B1C3BACA50076D9DC /* UIViewController+Additional.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

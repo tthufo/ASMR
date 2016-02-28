@@ -16,6 +16,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface M_First_ViewController ()<LMDropdownViewDelegate>
 {
     IBOutlet UITableView * tableView, *dropTableView;
@@ -78,6 +79,56 @@
     refresh.tag = 6996;
     [refresh addTarget:self action:@selector(didReload) forControlEvents:UIControlEventValueChanged];
     [tableView addSubview:refresh];
+    
+    [[LTRequest sharedInstance] didRequestInfo:@{@"absoluteLink":@"https://dl.dropboxusercontent.com/s/3ceciu3qrgxcqjc/ASMR1_3.plist",@"overrideError":@(1),@"overrideLoading":@(1),@"host":self} withCache:^(NSString *cacheString) {
+    } andCompletion:^(NSString *responseString, NSError *error, BOOL isValidated) {
+        
+        NSData *data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError * er = nil;
+        NSDictionary * dict = [self returnDictionary: [XMLReader dictionaryForXMLData:data
+                                                                              options:XMLReaderOptionsProcessNamespaces
+                                                                                error:&er]];
+        
+    
+        
+        [self addObject:@{@"banner":dict[@"banner"],@"fullBanner":dict[@"fullBanner"],@"adsMob":dict[@"ads"]} andKey:@"adsInfo"];
+        
+        BOOL isUpdate = [dict[@"version"] compare:[self appInfor][@"majorVersion"] options:NSNumericSearch] == NSOrderedDescending;
+        
+        if(isUpdate)
+        {
+            [[DropAlert shareInstance] alertWithInfor:@{/*@"option":@(0),@"text":@"wwww",*/@"cancel":@"Close",@"buttons":@[@"Download now"],@"title":@"New Update",@"message":dict[@"update_message"]} andCompletion:^(int indexButton, id object) {
+                switch (indexButton)
+                {
+                    case 0:
+                    {
+                        if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:dict[@"url"]]])
+                        {
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dict[@"url"]]];
+                        }
+                    }
+                        break;
+                    case 1:
+                        
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
+    }];
+}
+
+- (NSDictionary*)returnDictionary:(NSDictionary*)dict
+{
+    NSMutableDictionary * result = [NSMutableDictionary new];
+    
+    for(NSDictionary * key in dict[@"plist"][@"dict"][@"key"])
+    {
+        result[key[@"jacknode"]] = dict[@"plist"][@"dict"][@"string"][[dict[@"plist"][@"dict"][@"key"] indexOfObject:key]][@"jacknode"];
+    }
+    
+    return result;
 }
 
 - (void)didPressShare

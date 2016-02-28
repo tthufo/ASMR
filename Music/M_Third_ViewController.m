@@ -28,6 +28,13 @@
 
 @implementation M_Third_ViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [tableView reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,70 +52,8 @@
         
     } withIndicatorColor:[UIColor grayColor]];
     
-    /*
-    [[Ads sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"X":@(screenWidth),@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100)),@"adsId":bannerAPI,@"":@"d9024897b1d27634898743a5431cc4a6"} andCompletion:^(BannerEvent event, NSError *error, id banner) {
-        
-        switch (event)
-        {
-            case AdsDone:
-            {
-                tableView.contentInset = UIEdgeInsetsMake(SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, 0, SYSTEM_VERSION_LESS_THAN(@"7") ? 50 : 100, 0);
-            }
-                break;
-            case AdsFailed:
-
-                break;
-            case AdsWillPresent:
-                
-                
-                break;
-            case AdsWillDismiss:
-                
-                
-                break;
-            case AdsDidDismiss:
-                
-                
-                break;
-            case AdsWillLeave:
-                
-                break;
-            default:
-                break;
-        }
-    }];
-    */
+    [self didShowAdsBanner];
     
-    if([[self infoPlist][@"showAds"] boolValue])
-    {
-        [[StartAds sharedInstance] didShowBannerAdsWithInfor:@{@"host":self,@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100))} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-            switch (event)
-            {
-                case AdsDone:
-                {
-                    tableView.contentInset = UIEdgeInsetsMake(SYSTEM_VERSION_LESS_THAN(@"7") ? 0 : 64, 0, SYSTEM_VERSION_LESS_THAN(@"7") ? 50 : 100, 0);
-                }
-                    break;
-                case AdsFailed:
-                {
-                    
-                }
-                    break;
-                case AdsWillPresent:
-                {
-                    
-                }
-                    break;
-                case AdsWillLeave:
-                {
-                    
-                }
-                    break;
-                default:
-                    break;
-            }
-        }];
-    }
     dataList = [NSMutableArray new];
     
     for (id object in [[[searchBar subviews] firstObject] subviews])
@@ -122,6 +67,63 @@
             [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
             [textFieldObject setClearButtonMode:UITextFieldViewModeNever];
             break;
+        }
+    }
+}
+
+- (void)didShowAdsBanner
+{
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        if([[self getObject:@"adsInfo"][@"adsMob"] boolValue] && [self getObject:@"adsInfo"][@"banner"])
+        {            
+            [[Ads sharedInstance] G_didShowBannerAdsWithInfor:@{@"host":self,@"X":@(320),@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100)),@"adsId":[self getObject:@"adsInfo"][@"banner"]/*,@"device":@""*/} andCompletion:^(BannerEvent event, NSError *error, id banner) {
+                
+                switch (event)
+                {
+                    case AdsDone:
+                        
+                        break;
+                    case AdsFailed:
+                        
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
+    }
+    if([[self infoPlist][@"showAds"] boolValue])
+    {
+        if(![[self getObject:@"adsInfo"][@"adsMob"] boolValue])
+        {
+            [[Ads sharedInstance] S_didShowBannerAdsWithInfor:@{@"host":self,@"Y":@(screenHeight - (SYSTEM_VERSION_LESS_THAN(@"7") ? 164 : 100))} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+                switch (event)
+                {
+                    case AdsDone:
+                    {
+                        
+                    }
+                        break;
+                    case AdsFailed:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillPresent:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillLeave:
+                    {
+                        
+                    }
+                        break;
+                    default:
+                        break;
+                }
+            }];
         }
     }
 }
@@ -170,50 +172,58 @@
 
 - (void)showAds
 {
-//    [[Ads sharedInstance] didShowFullAdsWithInfor:@{@"host":self,@"adsId":searchAdAPI,@"":@""} andCompletion:^(BannerEvent event, NSError *error, id banner) {
-//        
-//        switch (event)
-//        {
-//            case AdsDone:
-//                
-//                break;
-//            case AdsFailed:
-//                
-//                break;
-//            default:
-//                break;
-//        }
-//    }];
-    
     if([[self infoPlist][@"showAds"] boolValue])
     {
-        [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-            switch (event)
+        if(![[self getObject:@"adsInfo"][@"adsMob"] boolValue])
+        {
+            [[Ads sharedInstance] S_didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+                switch (event)
+                {
+                    case AdsDone:
+                    {
+                        
+                    }
+                        break;
+                    case AdsFailed:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillPresent:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillLeave:
+                    {
+                        
+                    }
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
+        else
+        {
+            if([self getObject:@"adsInfo"][@"fullBanner"])
             {
-                case AdsDone:
-                {
+                [[Ads sharedInstance] G_didShowFullAdsWithInfor:@{@"host":self,@"adsId":[self getObject:@"adsInfo"][@"fullBanner"]/*,@"device":@""*/} andCompletion:^(BannerEvent event, NSError *error, id banner) {
                     
-                }
-                    break;
-                case AdsFailed:
-                {
-                    
-                }
-                    break;
-                case AdsWillPresent:
-                {
-                    
-                }
-                    break;
-                case AdsWillLeave:
-                {
-                    
-                }
-                    break;
-                default:
-                    break;
+                    switch (event)
+                    {
+                        case AdsDone:
+                            
+                            break;
+                        case AdsFailed:
+                            
+                            break;
+                        default:
+                            break;
+                    }
+                }];
             }
-        }];
+        }
     }
 }
 
@@ -347,9 +357,7 @@
     NSString * url = [NSString stringWithFormat: @"https://www.youtube.com/watch?v=%@",dataList[indexing][@"id"][@"videoId"]];
     
     [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR video",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
-        
-        //        NSLog(@"%i",errorCode);
-        
+                
     }];
 }
 
@@ -376,6 +384,8 @@
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(dataList.count == 0) return;
     
     [self.view endEditing:YES];
         

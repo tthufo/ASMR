@@ -10,49 +10,18 @@
 
 #import "YoutubeChildViewController.h"
 
-@import GoogleMobileAds;
-
-@interface M_Detail_ViewController () <GADInterstitialDelegate, PlayerDelegate>
+@interface M_Detail_ViewController ()<PlayerDelegate>
 {
     IBOutlet UITableView * tableView;
     
     NSMutableArray * dataList;
 }
 
-@property(nonatomic, strong) GADInterstitial *interstitial;
-
 @end
 
 @implementation M_Detail_ViewController
 
 @synthesize playListId, titleName;
-
-//- (void)createAndLoadInterstitial
-//{
-//    self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:adAPI];
-//    
-//    self.interstitial.delegate = self;
-//    
-//    GADRequest *request = [GADRequest request];
-//    
-////    request.testDevices = @[
-////                            kGADSimulatorID,@"a104de0d0aca5165d505f82e691ba8cd"
-////                            ];
-//    
-//    [self.interstitial loadRequest:request];
-//}
-//
-//#pragma mark GADInterstitialDelegate implementation
-//
-//- (void)interstitial:(GADInterstitial *)interstitial didFailToReceiveAdWithError:(GADRequestError *)error
-//{
-//
-//}
-//
-//- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial
-//{
-//    [self createAndLoadInterstitial];
-//}
 
 - (void)playerDidFinish:(NSDictionary*)dict
 {
@@ -75,36 +44,58 @@
 
 - (void)presentAds
 {
-//    [self.interstitial presentFromRootViewController:self];
     if([[self infoPlist][@"showAds"] boolValue])
     {
-        [[StartAds sharedInstance] didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
-            switch (event)
+        if(![[self getObject:@"adsInfo"][@"adsMob"] boolValue])
+        {
+            [[Ads sharedInstance] S_didShowFullAdsWithInfor:@{} andCompletion:^(BannerEvent event, NSError *error, id bannerAd) {
+                switch (event)
+                {
+                    case AdsDone:
+                    {
+                        
+                    }
+                        break;
+                    case AdsFailed:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillPresent:
+                    {
+                        
+                    }
+                        break;
+                    case AdsWillLeave:
+                    {
+                        
+                    }
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
+        else
+        {
+            if([self getObject:@"adsInfo"][@"fullBanner"])
             {
-                case AdsDone:
-                {
+                [[Ads sharedInstance] G_didShowFullAdsWithInfor:@{@"host":self,@"adsId":[self getObject:@"adsInfo"][@"fullBanner"]/*,@"device":@""*/} andCompletion:^(BannerEvent event, NSError *error, id banner) {
                     
-                }
-                    break;
-                case AdsFailed:
-                {
-                    
-                }
-                    break;
-                case AdsWillPresent:
-                {
-                    
-                }
-                    break;
-                case AdsWillLeave:
-                {
-                    
-                }
-                    break;
-                default:
-                    break;
+                    switch (event)
+                    {
+                        case AdsDone:
+                            
+                            break;
+                        case AdsFailed:
+                            
+                            break;
+                        default:
+                            break;
+                    }
+                }];
             }
-        }];
+        }
     }
 }
 
@@ -128,7 +119,6 @@
         UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didPressDone)];
         self.navigationItem.leftBarButtonItem = back;
     }
-//    [self createAndLoadInterstitial];
     
     [self didRequestData];
 }
@@ -247,8 +237,6 @@
     NSString * url = [NSString stringWithFormat: @"https://www.youtube.com/watch?v=%@",dataList[indexing][@"snippet"][@"resourceId"][@"videoId"]];
     
     [[FB shareInstance] startShareWithInfo:@[@"Check out this ASMR videos",url] andBase:sender andRoot:self andCompletion:^(NSString *responseString, id object, int errorCode, NSString *description, NSError *error) {
-        
-//        NSLog(@"%i",errorCode);
         
     }];
 }
